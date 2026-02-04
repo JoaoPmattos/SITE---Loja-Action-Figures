@@ -1,0 +1,433 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-color: #e50914;
+    --gold-color: #ffd700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    /* text-transform: uppercase; */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.cart-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: transform 0.2s, color 0.3s;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.hero-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: top center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.hero-bg-slide.active {
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #ddd;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.cta-button {
+    margin-top: 1.5rem;
+    padding: 15px 40px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover {
+    background-color: #b2070f;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+}
+
+/* --- ÁREA DO CARROSSEL DE PRODUTOS --- */
+.products-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.products-section h2 {
+    margin-bottom: 40px;
+    font-size: 2rem;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.carousel-wrapper {
+    position: relative;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 5px;
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    align-items: stretch;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Product Card */
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    flex: 0 0 calc(25% - 22.5px);
+    /* 4 cards por linha no Desktop */
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    scroll-snap-align: start;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
+}
+
+.image-container {
+    width: 100%;
+    flex-grow: 1;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: opacity 0.2s ease;
+}
+
+.thumb-gallery {
+    display: flex;
+    gap: 8px;
+    padding: 10px 15px;
+    background-color: var(--card-bg);
+    overflow-x: auto;
+    height: 60px;
+    scrollbar-width: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+}
+
+.product-card:hover .thumb-gallery {
+    opacity: 1;
+}
+
+.thumb-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.5;
+    transition: all 0.2s;
+}
+
+.thumb-img:hover,
+.thumb-img.active {
+    border-color: var(--accent-color);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.card-info {
+    padding: 15px 20px;
+    height: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: var(--card-bg);
+    z-index: 2;
+    border-top: 1px solid #333;
+}
+
+.card-info h3 {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.card-info p {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.price {
+    color: var(--gold-color);
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Botões do Carrossel */
+.nav-btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+    position: absolute;
+}
+
+.prev-btn {
+    left: 5px;
+}
+
+.next-btn {
+    right: 5px;
+}
+
+.nav-btn:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    background-color: #000;
+    margin-top: 50px;
+    color: #555;
+    border-top: 1px solid #333;
+}
+
+.footer-text p {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+@media (max-width: 1200px) {
+    .product-card {
+        flex: 0 0 calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 900px) {
+    .product-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .carousel-wrapper {
+        padding: 0 20px;
+        /* Mais espaço nas laterais */
+    }
+
+    /* MUDANÇA IMPORTANTE: Transforma o carrossel em lista vertical */
+    .carousel-track {
+        flex-direction: column;
+        /* Um embaixo do outro */
+        overflow-x: hidden;
+        /* Sem rolagem lateral */
+        gap: 40px;
+        /* Espaço entre os cards */
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    /* Esconde as setas, pois agora rola a página */
+
+    .product-card {
+        flex: 0 0 auto;
+        /* Altura automática */
+        width: 100%;
+        /* Largura total */
+        height: 550px;
+        /* Altura confortável no mobile */
+        scroll-snap-align: none;
+        /* Remove o snap, pois a rolagem é nativa */
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 30px 20px;
+    }
+}

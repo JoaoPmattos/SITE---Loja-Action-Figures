@@ -1,0 +1,405 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #ffffff;
+    --accent-color: #e50914;
+    --gold-color: #ffd700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR E FOOTER --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+    font-weight: bold;
+}
+
+.logo {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-color);
+}
+
+.cart-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: transform 0.2s;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    color: var(--accent-color);
+}
+
+/* --- HEADER DA COLEÇÃO --- */
+.collection-header {
+    padding: 120px 50px 20px 50px;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid #333;
+}
+
+.breadcrumb {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-actions h1 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 15px;
+}
+
+.sort-box select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid #444;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-left: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.collection-container {
+    display: flex;
+    padding: 40px 50px;
+    gap: 40px;
+    min-height: 100vh;
+}
+
+/* --- SIDEBAR FILTROS --- */
+.sidebar-filters {
+    width: 250px;
+    flex-shrink: 0;
+    border-right: 1px solid #333;
+    padding-right: 20px;
+    height: fit-content;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.filter-group {
+    margin-bottom: 30px;
+}
+
+.filter-group h4 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #aaa;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filter-group label:hover {
+    color: var(--accent-color);
+}
+
+.filter-group input[type="checkbox"] {
+    accent-color: var(--accent-color);
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.price-slider {
+    width: 100%;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+.price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* --- GRID DE PRODUTOS --- */
+.catalog-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+    align-content: start;
+    width: 100%;
+}
+
+/* --- CARD DO CATÁLOGO (AJUSTADO PARA CRESCER) --- */
+.catalog-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s;
+    border: 1px solid transparent;
+
+    display: flex;
+    flex-direction: column;
+
+    /* MUDANÇA: Altura automática para o card esticar se tiver muitas fotos */
+    height: auto;
+    min-height: 550px;
+
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.catalog-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Área da Imagem Principal */
+.catalog-img-box {
+    width: 100%;
+    /* Altura fixa para a imagem não mudar de tamanho */
+    height: 300px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: #000;
+    position: relative;
+}
+
+.catalog-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: opacity 0.2s ease, transform 0.5s;
+}
+
+.catalog-card:hover .catalog-img-box img {
+    transform: scale(1.05);
+}
+
+/* --- GALERIA DE MINIATURAS (CORRIGIDO) --- */
+.thumb-gallery {
+    display: flex;
+    gap: 6px;
+    padding: 10px 15px;
+    background-color: var(--card-bg);
+
+    /* Configuração para quebrar linha (Wrap) */
+    width: 100%;
+    flex-wrap: wrap;
+    /* Se não couber, desce */
+    justify-content: center;
+    /* Centraliza as miniaturas */
+
+    height: auto;
+    /* Altura automática */
+    min-height: 50px;
+    /* Altura mínima garantida */
+
+    opacity: 1;
+    /* Sempre visível */
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+    border-top: 1px solid #2a2a2a;
+}
+
+.thumb-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transition: all 0.2s;
+
+    /* Garante que não sejam esmagadas */
+    flex-shrink: 0;
+}
+
+.thumb-img:hover,
+.thumb-img.active {
+    border-color: var(--accent-color);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Informações do Card */
+.catalog-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    text-align: center;
+}
+
+.catalog-info h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: 500;
+}
+
+.catalog-info span {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.catalog-price {
+    font-size: 1.4rem;
+    color: var(--gold-color);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Botão de Compra */
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2D8A56;
+    color: white;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 4px;
+    margin-top: auto;
+}
+
+.add-btn:hover {
+    background-color: #3cb371;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    background-color: #000;
+    margin-top: 50px;
+    color: #555;
+    border-top: 1px solid #333;
+}
+
+.footer-text p {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 900px) {
+    .collection-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .sidebar-filters {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .collection-header {
+        padding: 100px 20px 20px 20px;
+    }
+}
